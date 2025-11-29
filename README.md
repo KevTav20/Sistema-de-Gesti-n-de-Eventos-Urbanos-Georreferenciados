@@ -1086,12 +1086,6 @@ npm start
 
 ---
 
-## Licencia
-
-ISC License
-
----
-
 ## Futuras Mejoras
 
 - [ ] Notificaciones en tiempo real (WebSockets)
