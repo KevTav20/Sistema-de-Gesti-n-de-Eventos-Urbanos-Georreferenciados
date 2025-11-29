@@ -1,0 +1,42 @@
+# Ignorar node_modules en ambos servicios
+**/node_modules
+**/npm-debug.log
+
+# Archivos de entorno
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Git
+**/.git
+**/.gitignore
+
+# Archivos de desarrollo
+**/.vscode
+**/.idea
+**/*.swp
+**/*.swo
+**/*~
+
+# Archivos de prueba
+**/test
+**/tests
+**/*.test.js
+**/*.spec.js
+**/coverage
+
+# Build de React (se genera en el contenedor)
+**/build
+**/dist
+
+# Logs
+**/logs
+**/*.log
+
+# Sistema operativo
+**/.DS_Store
+**/Thumbs.db
+
+# Documentación
+**/README.md
+**/docs

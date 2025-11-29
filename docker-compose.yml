@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # Servicio Backend (Node.js/Express)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: geomap-backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: 3000
+      # Usa tu MongoDB Atlas URI desde el archivo .env
+      MONGODB_URI: ${MONGODB_URI}
+      JWT_SECRET: ${JWT_SECRET:-your-super-secret-jwt-key-change-this-in-production}
+    ports:
+      - "3000:3000"
+    networks:
+      - geomap-network
+    volumes:
+      - backend_logs:/app/logs
+
+  # Servicio Frontend (React/Nginx)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_URL: ${REACT_APP_API_URL:-http://localhost:3000/api}
+    container_name: geomap-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - geomap-network
+
+networks:
+  geomap-network:
+    driver: bridge
+
+volumes:
+  backend_logs:
+    driver: local
